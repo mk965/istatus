@@ -1,0 +1,1 @@
+export { argsHandle } from './args';

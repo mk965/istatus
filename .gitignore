@@ -1,0 +1,88 @@
+# General
+# ------------------------------------------------------------------------------
+*.log
+*.lock
+*.pid
+*.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build artifacts and intermediates
+# ------------------------------------------------------------------------------
+build/
+dist/
+target/
+node_modules/
+coverage/
+*.egg-info
+*.pyc
+__pycache__/
+*.class
+*.jar
+*.war
+*.ear
+*.hprof
+
+# IDEs and Editors
+# ------------------------------------------------------------------------------
+*.iml
+*.ipr
+*.iws
+*.swp
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# Version control
+# ------------------------------------------------------------------------------
+.git
+.svn
+.hg
+.bzr
+
+# Package manager cache and logs
+# ------------------------------------------------------------------------------
+.pip
+pip-log.txt
+.npm
+yarn-error.log
+yarn.lock
+package-lock.json
+
+# Environment-specific
+# ------------------------------------------------------------------------------
+.env
+.env.example
+.env.development
+.env.production
+.env.test
+
+# Local configuration files
+# ------------------------------------------------------------------------------
+config.local.js
+config_override.yml
+
+# Logs and databases
+# ------------------------------------------------------------------------------
+logs/
+*.log
+*.sql
+*.sqlite
+*.db
+
+# Temporary files
+# ------------------------------------------------------------------------------
+temp/
+tmp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*~.nib
+localstorage/
+
+# History files
+.history/
+*.xml
