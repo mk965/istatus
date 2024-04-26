@@ -50,8 +50,8 @@ jobs:
 
             - name: Push new postger
               run: |
-                  git config --local user.email "action@github.com"
-                  git config --local user.name "GitHub Action"
+                  git config --local user.email "mencre@163.com"
+                  git config --local user.name "mk965"
                   git add .
                   git commit -m 'update new poster' || echo "nothing to commit"
                   git push || echo "nothing to push"
