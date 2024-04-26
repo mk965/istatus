@@ -1,0 +1,37 @@
+name: AppleHealth CI
+
+on:
+    workflow_dispatch:
+        inputs:
+            mode:
+                description: 'Mode'
+                required: true
+                default: 'add'
+            date:
+                description: 'Date'
+                required: true
+            value:
+                description: 'Value'
+                required: true
+            type:
+                description: 'Type'
+                required: true
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: '20'
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Run dev script with parameters
+              run: npm run dev -- --mode ${{ github.event.inputs.mode }} --date ${{ github.event.inputs.date }} --value ${{ github.event.inputs.value }} --type ${{ github.event.inputs.type }}
