@@ -38,12 +38,20 @@ jobs:
 
             - name: Commit changes
               run: |
-                git config --global user.name "mk965"
-                git config --global user.email "mencre@163.com"
-                git add .
-                git commit -m "Update data"
-        
-            - name: Push changes
-              uses: ad-m/github-push-action@master
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
+                  git config --global user.name "mk965"
+                  git config --global user.email "mencre@163.com"
+                  git add .
+                  git commit -m "Update data"
+
+            # - name: Push changes
+            #   uses: ad-m/github-push-action@master
+            #   with:
+            #       github_token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Push new postger
+              run: |
+                  git config --local user.email "action@github.com"
+                  git config --local user.name "GitHub Action"
+                  git add .
+                  git commit -m 'update new poster' || echo "nothing to commit"
+                  git push || echo "nothing to push"
