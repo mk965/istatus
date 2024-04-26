@@ -8,7 +8,7 @@ type DefaultParams = {
     [key: string]: any;
 }
 
-const setDefaultParams = (args: Record<string, string>): DefaultParams => {
+const setDefaultParams = (args: Record<string, string | boolean>): DefaultParams => {
     return {
         mode: 'history',
         ...args
@@ -22,7 +22,8 @@ console.log("参数", params)
 if (params.mode === 'add') {
     AppleHealth.AddData({
         ...params,
-        dataFilePath: path.resolve(__dirname, './data/AppleHealth.json'),
+        dataFilePath: path.resolve(__dirname, './data/test.json'),
+        // dataFilePath: path.resolve(__dirname, './data/AppleHealth.json'),
     }).then(() => {
         console.log('✨  add success');
     });
