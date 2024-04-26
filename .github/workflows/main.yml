@@ -36,23 +36,15 @@ jobs:
             - name: Run dev script with parameters
               run: npm run dev -- --mode ${{ github.event.inputs.mode }} --date ${{ github.event.inputs.date }} --value ${{ github.event.inputs.value }} --type ${{ github.event.inputs.type }}
 
-            # - name: Commit changes
-            #   run: |
-            #       git config --global user.name "mk965"
-            #       git config --global user.email "mencre@163.com"
-            #       git add .
-            #       git commit -m "Update data"
-
-            # - name: Push changes
-            #   uses: ad-m/github-push-action@master
-            #   with:
-            #       github_token: ${{ secrets.GITHUB_TOKEN }}
-
-            - name: Commit Change
+            - name: Commit changes
               run: |
-                  git config --local user.name "mk965"
-                  git config --local user.email "mencre@163.com"
-                  git pull
+                  git config --global user.name "mk965"
+                  git config --global user.email "mencre@163.com"
                   git add .
-                  git commit -m 'update data' || echo "nothing to commit"
-                  git push || echo "nothing to push"
+                  git commit -m "Update data"
+
+            - name: Push changes
+              uses: ad-m/github-push-action@master
+              with:
+                  github_token: ${{ secrets.ISTATUS_TOKEN }}
+
