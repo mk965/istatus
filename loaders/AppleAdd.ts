@@ -33,7 +33,7 @@ export const AddData = async (options: any) => {
 				const curData = JSON.parse(data.toString());
 				if (!curData[options.type]) curData[options.type] = {};
 				if (!curData[options.type][options.date]) curData[options.type][options.date] = 0;
-				curData[options.type][options.date] += +options.value;
+				curData[options.type][options.date] = +options.value;
 				fs.writeFile(options.dataFilePath, JSON.stringify(curData), (err) => {
 					if (err) {
 						console.error('Error writing file:', err);
