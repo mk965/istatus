@@ -37,9 +37,7 @@ const LoadHistoryData = async (options: Options) => {
 			const config = HEALTH_RECORD_TYPES[curType];
 			const func = config.func;
 			if (!data[curType]) data[curType] = {};
-			const date = dayjs(node.attributes.creationDate as any).format(
-				'YYYY-MM-DD'
-			);
+			const date = dayjs(node.attributes.creationDate as any).format('YYYY-MM-DD');
 			if (!data[curType][date]) data[curType][date] = func('0');
 			data[curType][date] += func(`${node.attributes.value}`);
 		};

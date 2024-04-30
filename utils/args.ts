@@ -20,6 +20,5 @@ export const argsHandle = (args: string[]): Record<string, string | boolean> => 
 			}
 		}
 	}
-
 	return params;
 };
