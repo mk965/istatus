@@ -11,15 +11,24 @@ type DefaultParams = {
 
 const setDefaultParams = (args: Record<string, string | boolean>): DefaultParams => {
     console.log("设置默认参数", args)
+    const str2Arr = (param: any) => (param && typeof param === 'string') ? param.split(',') : []
     return {
         mode: 'history',
-        ...args
+        ...args,
+        date: str2Arr(args.date),
+        value: str2Arr(args.value)
     }
 }
 
 const params = setDefaultParams(argsHandle(process.argv.slice(2) ?? []));
 
 console.log("参数", params)
+
+
+const exportSVG = (waterData: Record<string, number>) => {
+    const svg = generateSVG(waterData);
+    fs.writeFileSync(path.resolve(__dirname, './svg/water.svg'), svg);
+}
 
 
 if (params.mode === 'add') {
@@ -30,9 +39,8 @@ if (params.mode === 'add') {
     }).then(() => {
         console.log('✨  add success');
         try {
-            const appleData = JSON.parse(fs.readFileSync(path.resolve(__dirname, './data/AppleHealth.json'), 'utf8').toString());
-            const svg = generateSVG(appleData.water);
-            fs.writeFileSync(path.resolve(__dirname, './svg/water.svg'), svg);
+            const appleData = JSON.parse(fs.readFileSync(path.resolve(__dirname, './data/test.json'), 'utf8').toString());
+            exportSVG(appleData.water);
         } catch (error) {
             console.log("解析错误", error);
         }
@@ -43,8 +51,7 @@ if (params.mode === 'add') {
         outputFilePath: path.resolve(__dirname, './data/AppleHealth.json'),
     }).then((data) => {
         console.log('✨  Done')
-        const svg = generateSVG(data.water);
-        fs.writeFileSync(path.resolve(__dirname, './svg/water.svg'), svg);
+        exportSVG(data.water);
     }).catch(err => {
         console.error('Error:', err);
     });

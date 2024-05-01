@@ -32,8 +32,13 @@ export const AddData = async (options: any) => {
 			try {
 				const curData = JSON.parse(data.toString());
 				if (!curData[options.type]) curData[options.type] = {};
-				if (!curData[options.type][options.date]) curData[options.type][options.date] = 0;
-				curData[options.type][options.date] = +options.value;
+				
+				(options.date ?? []).forEach((date: string, index: number) => {
+					if (!options.value[index]) return;
+					if (!curData[options.type][date]) curData[options.type][date] = 0;
+					curData[options.type][date] = +options.value[index];
+				});
+
 				fs.writeFile(options.dataFilePath, JSON.stringify(curData), (err) => {
 					if (err) {
 						console.error('Error writing file:', err);
@@ -47,19 +52,6 @@ export const AddData = async (options: any) => {
 				reject(error);
 			}
 		});
-
-		// console.log(fileStr)
-		
-
-
-		// fs.createReadStream(options.dataFilePath)
-		// 	.pipe(fs.createWriteStream(options.dataFilePath, { flags: 'a' }))
-		// 	.on('finish', () => {
-		// 		resolve(true);
-		// 	})
-		// 	.on('error', (err) => {
-		// 		reject(err);
-		// 	});
 	});
 };
 

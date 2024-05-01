@@ -30,7 +30,7 @@ const generateDayRect = (
 		y="${yCoord}"
 		width="${cellSize}"
 		height="${cellSize}"
-		date="${date}"
+		class="${date}"
 		fill="${bgColor}"
 		stroke="${borderColor}"
 		rx="4"
@@ -66,13 +66,14 @@ const generateYearSVG = (
 	for (let day = 0; day < 366; day++) {
 		// const currentDate = new Date(targetYear, 0, 1);
 
-		let currentDate = dayjs().year(targetYear)
-		currentDate = currentDate.add(day, 'day')
+		let currentDate = dayjs().year(targetYear).month(0).date(1);
+		currentDate = currentDate.add(day, 'day');
+
 		const weekDay = currentDate.day();
 		if (currentDate.year() !== targetYear) break;
 		const xCoord = week * cellSize + cellPadding;
 		const yCoord = weekDay * cellSize + cellPadding;
-		const dateStr = dayjs(currentDate).format('YYYY-MM-DD');
+		const dateStr = currentDate.format('YYYY-MM-DD');
 		const data = dataObj[dateStr];
 		const value = data?.value ?? 0;
 		const { bg, border } = getLevelColor(value);
@@ -88,7 +89,7 @@ const generateYearSVG = (
 		// const value = data?.value ?? 0;
 		// const { bg, border } = getLevelColor(value);
 
-		console.log(currentDate);
+		// console.log(currentDate);
 
 		svg += generateDayRect(
 			xCoord,
