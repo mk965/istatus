@@ -39,7 +39,7 @@ if (params.mode === 'add') {
     }).then(() => {
         console.log('✨  add success');
         try {
-            const appleData = JSON.parse(fs.readFileSync(path.resolve(__dirname, './data/test.json'), 'utf8').toString());
+            const appleData = JSON.parse(fs.readFileSync(path.resolve(__dirname, './data/AppleHealth.json'), 'utf8').toString());
             exportSVG(appleData.water);
         } catch (error) {
             console.log("解析错误", error);
